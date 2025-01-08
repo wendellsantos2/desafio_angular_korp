@@ -84,11 +84,14 @@ namespace webApi.Controller
             if (existingTask == null)
                 return NotFound(new { Message = "Task not found" });
 
-            task.UpdatedAt = DateTime.UtcNow;
+            existingTask.Name = task.Name;
+            existingTask.Description = task.Description;
+            existingTask.IsCompleted = task.IsCompleted;
+            existingTask.UpdatedAt = DateTime.UtcNow;
 
-            await _taskRepository.UpdateAsync(task);
+            await _taskRepository.UpdateAsync(existingTask);
 
-            return NoContent();
+            return Ok(existingTask); // Retorna a tarefa atualizada
         }
 
         /// <summary>

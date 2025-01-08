@@ -23,25 +23,28 @@ export class TaskService {
 
   getTasks(): Observable<Task[]> {
     return this.http.get<Task[]>(this.apiUrl).pipe(
-      catchError((error: HttpErrorResponse) => {
-        return of([]);
-      })
+      catchError(() => of([]))
     );
   }
 
   addTask(task: Task): Observable<Task> {
     return this.http.post<Task>(this.apiUrl, task).pipe(
       catchError((error: HttpErrorResponse) => {
+        console.error('Erro ao adicionar tarefa:', error);
         return of(task);
       })
     );
   }
 
-  updateTask(task: Task): Observable<void> {
-    return this.http.put<void>(`${this.apiUrl}/${task.id}`, task).pipe(
-      catchError(() => of())
+  updateTask(task: Task): Observable<Task> {
+    return this.http.put<Task>(`${this.apiUrl}/${task.id}`, task).pipe(
+      catchError((error) => {
+        console.error('Erro ao atualizar a tarefa:', error);
+        throw error;
+      })
     );
   }
+
 
   deleteTask(id: string): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`).pipe(
