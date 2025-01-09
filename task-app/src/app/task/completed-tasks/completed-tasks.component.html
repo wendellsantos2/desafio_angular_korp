@@ -1,0 +1,34 @@
+<div class="container py-3">
+  <h2 class="text-center text-success">Tarefas Concluídas</h2>
+  <div class="table-responsive shadow-lg rounded">
+    <table class="table table-hover table-bordered align-middle">
+      <thead class="table-dark">
+        <tr>
+          <th scope="col">Título</th>
+          <th scope="col">Descrição</th>
+          <th scope="col" class="text-center">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let task of completedTasks; trackBy: trackByTaskId">
+          <td>{{ task.name }}</td>
+          <td>{{ task.description }}</td>
+          <td class="text-center">
+            <button
+              class="btn btn-warning btn-sm me-2"
+              (click)="markAsPending(task)"
+              title="Reabrir Tarefa"
+            >
+              <i class="fas fa-undo"></i> Reabrir
+            </button>
+
+
+          </td>
+        </tr>
+        <tr *ngIf="completedTasks.length === 1">
+          <td colspan="3" class="text-center text-muted">Nenhuma tarefa concluída encontrada.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

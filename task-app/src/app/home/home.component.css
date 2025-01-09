@@ -1,0 +1,86 @@
+/* Tabela */
+.table {
+  width: 100%;
+  margin-top: 30px;
+  border-radius: 8px; /* Bordas arredondadas */
+  background-color: #fff; /* Fundo branco */
+  border-collapse: separate; /* Separar bordas */
+  border-spacing: 0 10px; /* Espaçamento entre as linhas */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra mais pronunciada */
+}
+
+.table thead {
+  background-color: #007bff; /* Azul principal */
+}
+
+.table thead th {
+  text-align: center;
+  padding: 15px;
+  font-size: 1rem;
+  background-color: #0056b3; /* Azul escuro para destaque */
+  color: #fff; /* Texto branco */
+  font-weight: bold;
+  text-transform: uppercase;
+  border-top-left-radius: 8px; /* Arredonda os cantos superiores */
+  border-top-right-radius: 8px;
+}
+
+.table td,
+.table th {
+  text-align: center;
+  padding: 15px;
+  font-size: 0.95rem;
+  color: #333; /* Texto escuro */
+}
+
+.table td {
+  background-color: #f9f9f9; /* Fundo cinza claro para contraste */
+}
+
+.table-hover tbody tr:hover {
+  background-color: #e9ecef; /* Fundo mais claro no hover */
+  transition: background-color 0.3s ease; /* Transição suave */
+}
+
+.table-bordered {
+  border: 1px solid #dee2e6; /* Bordas mais suaves */
+}
+
+/* Badge para Status */
+.badge {
+  padding: 8px 12px;
+  font-size: 0.9rem;
+  border-radius: 12px; /* Bordas arredondadas */
+  text-transform: capitalize; /* Primeira letra maiúscula */
+}
+
+.badge-success {
+  background-color: #28a745; /* Verde para concluídas */
+  color: #fff;
+}
+
+.badge-danger {
+  background-color: #dc3545; /* Vermelho para pendentes */
+  color: #fff;
+}
+
+/* Tabelas Responsivas */
+.table-responsive {
+  overflow-x: auto;
+  border-radius: 8px; /* Arredonda a borda da tabela */
+  padding: 10px;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .table th,
+  .table td {
+    font-size: 0.85rem; /* Fonte reduzida */
+    padding: 10px;
+  }
+
+  .badge {
+    font-size: 0.8rem; /* Badge menor */
+    padding: 6px 10px;
+  }
+}

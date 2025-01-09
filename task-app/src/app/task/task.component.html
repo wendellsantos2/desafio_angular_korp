@@ -1,28 +1,113 @@
-<div class="container">
-  <h1>Bem-vindo à Home</h1>
-  <p>Esta é a lista de tarefas disponíveis:</p>
+ 
+<div class="container py-5">
+  <h1 class="text-center mb-4">Bem-vindo à Tarefas</h1>
+  <p class="text-center mb-5">Esta é a lista de tarefas disponíveis:</p>
 
-  <div class="d-flex justify-content-end mb-3">
-
+  <!-- Formulário de Adição de Tarefa -->
+  <div class="card mb-4 shadow-sm border-light">
+    <div class="card-body">
+      <h3 class="card-title">Adicionar Nova Tarefa</h3>
+      <form (ngSubmit)="addTask()" #taskForm="ngForm">
+        <div class="mb-4">
+          <label for="newTaskTitle" class="form-label">Título da Tarefa</label>
+          <input
+            type="text"
+            id="newTaskTitle"
+            class="form-control"
+            [(ngModel)]="newTaskTitle"
+            name="newTaskTitle"
+            required
+            placeholder="Insira o título da tarefa"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="newTaskDescription" class="form-label">Descrição</label>
+          <textarea
+            id="newTaskDescription"
+            class="form-control"
+            [(ngModel)]="newTaskDescription"
+            name="newTaskDescription"
+            required
+            placeholder="Descreva a tarefa"
+            rows="3"
+          ></textarea>
+        </div>
+        <button type="submit" class="btn btn-add w-100" [disabled]="taskForm.invalid">
+          <i class="fas fa-plus"></i> Adicionar Tarefa
+        </button>
+      </form>
+    </div>
   </div>
 
-  <ul class="list-group">
-    <li
-      class="list-group-item d-flex justify-content-between align-items-center"
-      *ngFor="let task of tasks; trackBy: trackByTaskId"
-    >
-      <div>
-        <h5>{{ task.name }}</h5>
-        <p>{{ task.description }}</p>
-      </div>
-      <div>
-        <button class="btn btn-warning btn-sm me-2" (click)="editTask(task)">
-          Editar
-        </button>
-        <button class="btn btn-danger btn-sm" (click)="deleteTask(task.id)">
-          Excluir
-        </button>
-      </div>
-    </li>
-  </ul>
+  <!-- Formulário de Edição de Tarefa -->
+  <div *ngIf="editingTask" class="card mt-4 shadow-sm border-light">
+    <div class="card-body">
+      <h3 class="card-title">Editar Tarefa</h3>
+      <form (ngSubmit)="saveTask()">
+        <div class="mb-3">
+          <label for="editTaskTitle" class="form-label">Título</label>
+          <input
+            type="text"
+            id="editTaskTitle"
+            class="form-control"
+            [(ngModel)]="editingTask.name"
+            name="editTaskTitle"
+            required
+            placeholder="Edite o título da tarefa"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="editTaskDescription" class="form-label">Descrição</label>
+          <textarea
+            id="editTaskDescription"
+            class="form-control"
+            [(ngModel)]="editingTask.description"
+            name="editTaskDescription"
+            required
+            placeholder="Edite a descrição da tarefa"
+            rows="3"
+          ></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Salvar</button>
+        <button type="button" class="btn btn-secondary w-100 mt-2" (click)="cancelEdit()">Cancelar</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Tabela de Tarefas -->
+  <div class="table-responsive">
+    <table class="table table-hover table-bordered shadow-sm">
+      <thead>
+        <tr>
+          <th scope="col">Título</th>
+          <th scope="col">Descrição</th>
+          <th scope="col">Status</th>
+          <th scope="col">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let task of tasks; trackBy: trackByTaskId">
+          <td>{{ task.name }}</td>
+          <td>{{ task.description }}</td>
+          <td>
+            <span [class.text-success]="task.isCompleted" [class.text-danger]="!task.isCompleted">
+              {{ task.isCompleted ? 'Concluída' : 'Pendente' }}
+            </span>
+          </td>
+          <td>
+            <button class="btn btn-warning btn-sm me-2" (click)="editTask(task)">
+              Editar
+            </button>
+            <button class="btn btn-success btn-sm me-2" (click)="toggleTaskStatus(task)">
+              {{ task.isCompleted ? 'Marcar como Pendente' : 'Marcar como Concluída' }}
+            </button>
+            <button class="btn btn-danger btn-sm" (click)="deleteTask(task.id)">
+              Excluir
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
 </div>

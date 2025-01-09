@@ -1,0 +1,121 @@
+/* Navbar */
+.navbar {
+  background-color: #007bff; /* Azul principal */
+  padding: 10px 20px;
+  color: #000000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+  color: #fff;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+}
+
+.navbar-logo {
+  height: 30px;
+  margin-right: 10px;
+}
+
+.navbar-toggler {
+  background: none;
+  border: none;
+  color: #007bff;
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: none;
+  transition: color 0.3s ease;
+}
+
+.navbar-toggler:hover {
+  color: #ffc107; /* Amarelo no hover */
+}
+
+.navbar-collapse {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  gap: 15px;
+  transition: all 0.3s ease;
+}
+
+.navbar-collapse.show {
+  display: flex;
+}
+
+.navbar-nav {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 20px; /* Maior espaçamento entre itens */
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+}
+
+.nav-link {
+  color: #007bff;
+  text-decoration: none;
+  font-size: 1rem;
+  padding: 8px 15px; /* Maior espaçamento interno */
+  border-radius: 5px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.nav-link:hover {
+  background-color: #0056b3; /* Azul escuro no hover */
+  color: #fff; /* Texto branco no hover */
+}
+
+.nav-link.active {
+  background-color: #ffffff; /* Fundo branco para link ativo */
+  color: #000; /* Texto preto para link ativo */
+  font-weight: bold;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra leve no botão ativo */
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .navbar-toggler {
+    display: block;
+  }
+
+  .navbar-collapse {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    display: none;
+    background-color: #ffffff; /* Fundo branco no menu colapsado */
+    width: 100%;
+    padding: 10px 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+  }
+
+  .navbar-collapse.show {
+    display: flex;
+  }
+
+  .nav-item {
+    width: 100%;
+  }
+
+  .nav-link {
+    width: 100%;
+    text-align: left;
+    padding: 10px 20px;
+  }
+}

@@ -29,6 +29,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
   ],
   imports: [
     BrowserModule,
+    
     FormsModule,  // <-- Adicione FormsModule aqui
     HttpClientModule ,
     RouterOutlet // <-- Import necessário para chamadas HTTP
